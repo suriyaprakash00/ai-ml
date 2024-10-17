@@ -1,0 +1,180 @@
+PROGRAM NO: 01     
+Tensor Flow Library
+
+import tensorflow as tf 
+from tensorflow.keras.datasets import mnist 
+from tensorflow.keras.models import Sequential 
+from tensorflow.keras.layers import Dense, Flatten 
+ 
+(x_train, y_train), (x_test, y_test) = mnist.load_data() 
+x_train, x_test = x_train / 255.0, x_test /255.0 
+ 
+model = Sequential([ 
+    Flatten(input_shape=(28, 28)), 
+    Dense(128, activation='relu'), 
+    Dense(10) 
+]) 
+ 
+model.compile(optimizer='adam', 
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
+              metrics=['accuracy']) 
+ 
+model.fit(x_train, y_train, epochs=5, batch_size=32, validation_data=(x_test, y_test)) 
+ 
+test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2) 
+print(f'Test accuracy: {test_acc}') 
+
+____________________________________________________________________
+
+PROGRAM NO: 02      
+Searching Maximum and Minimum element using NumPy 
+
+import numpy as np 
+array=np.array([69,96,99,14,3]) 
+max_element=np.max(array) 
+min_element=np.min(array) 
+print("Maximum element in the array:",max_element) 
+print("Minimum element in the array:",min_element)
+
+_____________________________________________________________________
+
+PROGRAM NO: 03
+Natural Language Processing
+
+from nltk.chat.util import Chat, reflections 
+pairs =[ 
+    ['(hi|hello|hey|holla|hola)', ['Hey there !', 'Hi there !', 'Hey !']], 
+    ['(what is your name ?)', ['I am Monkey D Luffy']], 
+    ['(what do you do ?)', ['I am Emperor of the sea']], 
+    ['(what is your power ?)', ['I am Sun god NIKA!']] 
+] 
+ 
+chat = Chat(pairs, reflections) 
+chat.converse()
+
+______________________________________________________________________
+
+PROGRAM NO: 04 
+Convert a Pandas Module Series to Python List
+
+import pandas as pd 
+mk=pd.Series([1,2,3,4,5,6]) 
+print(mk) 
+print(type(mk)) 
+print("Pandas Series to python list:") 
+print(mk.tolist()) 
+print(type(mk.tolist()))
+
+______________________________________________________________________
+
+PROGRAM NO: 05
+Time Series Analysis 
+
+import pandas as pd 
+import matplotlib.pyplot as plt 
+ 
+data={'Date': pd.to_datetime(['2023-01-01','2023-01-02','2023-01-03','2023-01
+04','2023-01-05']),'Value':[10,12,15,13,16]} 
+ 
+df=pd.DataFrame(data) 
+df.set_index('Date',inplace=True) 
+ 
+print(df) 
+print(df.describe()) 
+ 
+plt.figure(figsize=(10,6)) 
+plt.plot(df.index,df['Value']) 
+plt.title('Time Series Data') 
+plt.xlabel('Date')  
+plt.ylabel('Value') 
+plt.grid(True) 
+plt.show() 
+
+________________________________________________________________________
+
+PROGRAM NO: 06 
+Clustering Algorithm 
+
+import numpy as np 
+import matplotlib.pyplot as plt 
+from sklearn.datasets import make_blobs 
+ 
+x,y=make_blobs(n_samples=500,n_features=2,centers=3,random_state=23) 
+ 
+fig=plt.figure(0) 
+plt.grid(True) 
+plt.scatter(x[:,0],x[:,1]) 
+plt.show()
+
+__________________________________________________________________________
+
+PROGRAM NO: 07
+Reinforcement Learning
+
+import random 
+import gym 
+ 
+env=gym.make('CartPole-v1',render_mode='human') 
+ 
+episodes=10 
+for episode in range(1,episodes+1): 
+    state=env.reset() 
+    done=False 
+    score=0 
+ 
+    while not done: 
+      action=random.choice([0,1]) 
+      n_state,reward,done,info=env.step(action) 
+      score+=reward 
+      env.render() 
+    print('Episode:{} Score:{}'.format(episode,score)) 
+env.close() 
+
+__________________________________________________________________________
+
+PROGRAM NO: 08 
+Keras Model 
+
+import tensorflow as tf 
+from tensorflow import keras 
+ 
+model = keras.Sequential([ 
+  keras.layers.Dense(10, activation='relu', input_shape=(2,)), 
+  keras.layers.Dense(1) 
+]) 
+ 
+model.compile(optimizer='adam', loss='mse') 
+ 
+import numpy as np 
+x_train = np.random.rand(100, 2) 
+y_train = np.dot(x_train, [2., 3.]) + 1 
+ 
+model.fit(x_train, y_train, epochs=10) 
+ 
+x_test = np.random.rand(10, 2) 
+predictions = model.predict(x_test) 
+ 
+print(predictions) 
+
+__________________________________________________________________________________
+
+PROGRAM NO: 09
+Finding exponents and trigonometric Problems using Scipy 
+
+import numpy as np 
+import scipy.special as sp 
+ 
+sin_value=np.sin(np.pi/2) 
+cos_value=np.cos(np.pi/2) 
+tan_value=np.tan(np.pi/2) 
+print(f"sin({np.pi/2})={sin_value}") 
+print(f"cos({np.pi/2})={cos_value}") 
+print(f"tan({np.pi/2})={tan_value}") 
+ 
+asin_value=np.arcsin(0.5) 
+acos_value=np.arccos(0.5) 
+atan_value=np.arctan(0.5) 
+ 
+print(f"arcsin(0.5)={np.degrees(asin_value)} degrees")   
+print(f"arccos(0.5)={np.degrees(acos_value)} degrees") 
+print(f"arctan(0.5)={np.degrees(atan_value)} degrees")
